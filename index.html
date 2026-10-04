@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VITRUK — lembrete de pausa e alongamento para quem dirige</title>
+<meta name="description" content="Lembrete de pausa e alongamento para quem dirige o dia inteiro. Funciona sem internet, não pede cadastro e nenhum dado sai do aparelho.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vitruk.app/">
+<meta property="og:title" content="VITRUK">
+<meta property="og:description" content="Lembrete de pausa e alongamento para quem dirige o dia inteiro.">
+<meta property="og:image" content="https://vitruk.app/previa.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<style>
+  :root {
+    --navy: #1A3A5C;
+    --navy-dark: #12293F;
+    --paper: #F5F7FA;
+    --soft: #A0B7D0;
+    --line: rgba(245,247,250,.16);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--navy);
+    color: var(--paper);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 72px 0 48px;
+  }
+  .mark { width: 96px; height: 96px; color: var(--paper); }
+  h1 {
+    font-size: clamp(42px, 11vw, 68px);
+    font-weight: 800;
+    letter-spacing: .04em;
+    margin: 26px 0 0;
+    line-height: 1;
+  }
+  .tagline {
+    font-size: clamp(18px, 4.4vw, 22px);
+    color: var(--soft);
+    margin: 18px 0 0;
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 36px 0 0;
+  }
+  .badge {
+    font-size: 14px;
+    color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 16px;
+  }
+  .soon {
+    margin: 40px 0 0;
+    font-size: 15px;
+    color: var(--soft);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 24px 0 calc(24px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+    font-size: 14.5px;
+    color: var(--soft);
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  footer a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+  footer a:hover { color: var(--soft); }
+  .contato { margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<main>
+  <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="VITRUK">
+    <polygon points="23,31 44,77 56,77 77,31 62,31 52,61 48,61 38,31" fill="currentColor"/>
+  </svg>
+
+  <h1>VITRUK</h1>
+
+  <p class="tagline">Lembrete de pausa e alongamento para quem dirige o dia inteiro.</p>
+
+  <div class="badges">
+    <span class="badge">Funciona sem internet</span>
+    <span class="badge">Sem cadastro</span>
+    <span class="badge">Nada sai do aparelho</span>
+  </div>
+
+  <p class="soon">Em breve na App Store e no Google Play</p>
+</main>
+
+<footer>
+  <a href="privacidade/">Política de privacidade</a>
+  <div class="contato">vitrukapp@gmail.com</div>
+</footer>
+
+</body>
+</html>
