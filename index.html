@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>VITRUK — lembrete de pausa e alongamento para quem dirige</title>
 <meta name="description" content="Lembrete de pausa e alongamento para quem dirige o dia inteiro. Funciona sem internet, não pede cadastro e nenhum dado sai do aparelho.">
 
@@ -23,105 +23,188 @@
     --paper: #F5F7FA;
     --soft: #A0B7D0;
     --line: rgba(245,247,250,.16);
+    --card: rgba(245,247,250,.05);
   }
   * { box-sizing: border-box; }
-  html, body { height: 100%; }
   body {
     margin: 0;
     background: var(--navy);
     color: var(--paper);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    padding: 0 24px;
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding-inline: 24px;
+    padding-block: 0 0;
+    -webkit-font-smoothing: antialiased;
   }
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h2 {
+    font-size: clamp(26px, 5vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    margin: 0 0 18px;
+  }
+  p { margin: 0 0 16px; max-width: 60ch; }
+  p:last-child { margin-bottom: 0; }
+  section { padding-block: 56px; border-top: 1px solid var(--line); }
+
+  /* ------------------------------------------------------------- hero */
+  header {
+    padding-block: 64px 56px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 56px;
     align-items: center;
-    text-align: center;
-    max-width: 620px;
-    margin: 0 auto;
-    padding: 72px 0 48px;
   }
-  .mark { width: 96px; height: 96px; color: var(--paper); }
+  .mark { width: 88px; height: 88px; color: var(--paper); display: block; }
   h1 {
-    font-size: clamp(42px, 11vw, 68px);
+    font-size: clamp(46px, 11vw, 76px);
     font-weight: 800;
-    letter-spacing: .04em;
-    margin: 26px 0 0;
+    letter-spacing: .03em;
     line-height: 1;
+    margin: 22px 0 0;
   }
   .tagline {
-    font-size: clamp(18px, 4.4vw, 22px);
+    font-size: clamp(19px, 4vw, 24px);
     color: var(--soft);
-    margin: 18px 0 0;
+    margin: 16px 0 0;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .hero-body { margin-top: 24px; max-width: 46ch; }
+  .shot {
+    width: 280px;
+    border-radius: 26px;
+    border: 1px solid var(--line);
+    display: block;
+    max-width: 100%;
+  }
+  .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .store {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 11px 20px;
+    font-size: 14.5px;
+    color: var(--soft);
+  }
+
+  /* ----------------------------------------------------------- lista */
+  .feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 18px; }
+  .feat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .feat b { display: block; font-size: 17.5px; margin-bottom: 5px; }
+  .feat span { color: var(--soft); font-size: 15.5px; line-height: 1.55; }
+
+  /* ------------------------------------------------------------ dicas */
+  ol.dicas { list-style: none; counter-reset: d; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ol.dicas li {
+    counter-increment: d;
+    display: flex; align-items: center; gap: 16px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px 20px;
+    font-size: 17.5px;
+  }
+  ol.dicas li::before {
+    content: counter(d);
+    flex: none; width: 34px; height: 34px; border-radius: 50%;
+    background: var(--paper); color: var(--navy);
+    font-weight: 800; font-size: 16px;
+    display: grid; place-items: center;
+  }
+
+  .claim {
+    font-size: clamp(21px, 4.4vw, 27px);
+    line-height: 1.4;
     max-width: 24ch;
     text-wrap: balance;
   }
-  .badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin: 36px 0 0;
-  }
-  .badge {
-    font-size: 14px;
-    color: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 7px 16px;
-  }
-  .soon {
-    margin: 40px 0 0;
-    font-size: 15px;
-    color: var(--soft);
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
+  .claim em { font-style: normal; color: var(--soft); }
+
   footer {
     border-top: 1px solid var(--line);
-    padding: 24px 0 calc(24px + env(safe-area-inset-bottom, 0px));
-    text-align: center;
-    font-size: 14.5px;
+    padding-block: 32px calc(40px + env(safe-area-inset-bottom, 0px));
     color: var(--soft);
-    max-width: 620px;
-    margin: 0 auto;
-    width: 100%;
+    font-size: 15px;
+    display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center;
   }
   footer a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
   footer a:hover { color: var(--soft); }
-  .contato { margin-top: 8px; }
+
+  @media (max-width: 760px) {
+    header { grid-template-columns: 1fr; gap: 36px; padding-block: 48px 40px; }
+    .shot { width: 250px; margin-inline: auto; }
+  }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<main>
-  <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="VITRUK">
-    <polygon points="23,31 44,77 56,77 77,31 62,31 52,61 48,61 38,31" fill="currentColor"/>
-  </svg>
+  <header>
+    <div>
+      <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="VITRUK">
+        <polygon points="23,31 44,77 56,77 77,31 62,31 52,61 48,61 38,31" fill="currentColor"/>
+      </svg>
+      <h1>VITRUK</h1>
+      <p class="tagline">Lembrete de pausa e alongamento para quem dirige o dia inteiro.</p>
+      <p class="hero-body">
+        Você passa o dia no volante. O VITRUK avisa a hora de parar, mostra
+        alongamentos para fazer com o veículo parado, e deixa você anotar como
+        o corpo está. Sem cadastro, sem internet, nada sai do seu celular.
+      </p>
+      <div class="stores">
+        <span class="store">Em breve na App Store</span>
+        <span class="store">Em breve no Google Play</span>
+      </div>
+    </div>
+    <img class="shot" src="tela-inicio.png" width="560" height="1089"
+         alt="Tela inicial do VITRUK, mostrando o tempo até a próxima pausa">
+  </header>
 
-  <h1>VITRUK</h1>
+  <section>
+    <h2>Por que existe</h2>
+    <p class="claim">
+      Quem dirige o dia inteiro sabe como o corpo fica no fim da jornada.
+      <em>O VITRUK não promete resolver isso. Ele só não deixa você esquecer
+      de parar.</em>
+    </p>
+  </section>
 
-  <p class="tagline">Lembrete de pausa e alongamento para quem dirige o dia inteiro.</p>
+  <section>
+    <h2>O que ele faz</h2>
+    <div class="feats">
+      <div class="feat"><b>Lembrete de pausa</b><span>Avisa na hora, mesmo com o app fechado.</span></div>
+      <div class="feat"><b>Cinco alongamentos</b><span>Pescoço, ombros, lombar, punhos e mãos, pernas. Todos para fazer com o veículo parado.</span></div>
+      <div class="feat"><b>Registrar dor</b><span>De 0 a 10, com o histórico dos últimos 14 dias.</span></div>
+      <div class="feat"><b>Uma dica por dia</b><span>De quem vive dentro do carro.</span></div>
+      <div class="feat"><b>Você escolhe o intervalo</b><span>1 hora, 1 hora e 30 ou 2 horas.</span></div>
+      <div class="feat"><b>Funciona sem internet</b><span>Sem cadastro, nada sai do aparelho.</span></div>
+    </div>
+  </section>
 
-  <div class="badges">
-    <span class="badge">Funciona sem internet</span>
-    <span class="badge">Sem cadastro</span>
-    <span class="badge">Nada sai do aparelho</span>
-  </div>
+  <section>
+    <h2>Dicas de quem vive na estrada</h2>
+    <p>Uma por dia, direto ao ponto.</p>
+    <ol class="dicas">
+      <li>Marque o banheiro antes</li>
+      <li>A garrafa na mão</li>
+      <li>O espelho denuncia você</li>
+      <li>Parado escorrega mais</li>
+      <li>Não compre nada na rua</li>
+    </ol>
+  </section>
 
-  <p class="soon">Em breve na App Store e no Google Play</p>
-</main>
+  <section>
+    <h2>Privacidade</h2>
+    <p>
+      Seus dados ficam no seu celular. O VITRUK não tem cadastro, não precisa
+      de internet e não envia nada para lugar nenhum.
+    </p>
+    <p><a href="privacidade/" style="color:var(--paper)">Política de privacidade</a></p>
+  </section>
 
-<footer>
-  <a href="privacidade/">Política de privacidade</a>
-  <div class="contato">vitrukapp@gmail.com</div>
-</footer>
+  <footer>
+    <span>Feito por quem dirige, para quem dirige.</span>
+    <a href="privacidade/">Política de privacidade</a>
+    <span>vitrukapp@gmail.com</span>
+  </footer>
 
+</div>
 </body>
 </html>
