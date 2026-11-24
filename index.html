@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>VITRUK — lembrete de pausa e alongamento para quem dirige</title>
-<meta name="description" content="Lembrete de pausa e alongamento para quem dirige o dia inteiro. Funciona sem internet, não pede cadastro e nenhum dado sai do aparelho.">
+<title>VITRUK — guia de bolso e lembrete de pausa para quem vive no carro</title>
+<meta name="description" content="O VITRUK avisa a hora da pausa, mostra alongamentos para fazer com o carro parado e traz um guia de bolso. App grátis, com uma compra única e opcional. Em português e sem precisar de internet.">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vitruk.app/">
 <meta property="og:title" content="VITRUK">
-<meta property="og:description" content="Lembrete de pausa e alongamento para quem dirige o dia inteiro.">
+<meta property="og:description" content="Guia de bolso e lembrete de pausa para quem vive no carro.">
 <meta property="og:image" content="https://vitruk.app/previa.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -22,8 +22,13 @@
     --navy-dark: #12293F;
     --paper: #F5F7FA;
     --soft: #A0B7D0;
+    /* Texto secundário de cartões, perguntas e legendas. Contraste (WCAG):
+       7,65:1 sobre o fundo e 6,65:1 sobre o fundo dos cartões. */
+    --claro: #C5D3E3;
     --line: rgba(245,247,250,.16);
     --card: rgba(245,247,250,.05);
+    --ink: #1F2937;
+    --ink-soft: #4B5563;
   }
   * { box-sizing: border-box; }
   body {
@@ -32,7 +37,6 @@
     color: var(--paper);
     font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     padding-inline: 24px;
-    padding-block: 0 0;
     -webkit-font-smoothing: antialiased;
   }
   .wrap { max-width: 980px; margin: 0 auto; }
@@ -42,167 +46,417 @@
     letter-spacing: -.02em;
     margin: 0 0 18px;
   }
+  h3 { font-size: 18px; line-height: 1.3; margin: 0 0 6px; }
   p { margin: 0 0 16px; max-width: 60ch; }
   p:last-child { margin-bottom: 0; }
+  a { color: var(--paper); text-underline-offset: 3px; }
+  a:hover { color: var(--soft); }
   section { padding-block: 56px; border-top: 1px solid var(--line); }
+  .lead { color: var(--claro); }
+
+  /* ------------------------------------------------- barra superior */
+  /* Marca pequena de propósito: o destaque do topo é o benefício e a
+     captura real do app, não o nome. */
+  .topo {
+    display: flex; align-items: center; gap: 10px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 800; font-size: 18px; letter-spacing: .06em;
+  }
+  .mark { width: 28px; height: 28px; color: var(--paper); display: block; flex: none; }
 
   /* ------------------------------------------------------------- hero */
   header {
-    padding-block: 64px 56px;
+    padding-block: 48px 56px;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 56px;
     align-items: center;
   }
-  .mark { width: 88px; height: 88px; color: var(--paper); display: block; }
   h1 {
-    font-size: clamp(46px, 11vw, 76px);
+    font-size: clamp(32px, 7vw, 52px);
     font-weight: 800;
-    letter-spacing: .03em;
-    line-height: 1;
-    margin: 22px 0 0;
-  }
-  .tagline {
-    font-size: clamp(19px, 4vw, 24px);
-    color: var(--soft);
-    margin: 16px 0 0;
-    max-width: 22ch;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    margin: 0;
+    max-width: 16ch;
     text-wrap: balance;
   }
-  .hero-body { margin-top: 24px; max-width: 46ch; }
+  .hero-body {
+    font-size: clamp(18px, 3.4vw, 20px);
+    color: var(--claro);
+    margin-top: 20px;
+    max-width: 46ch;
+  }
   .shot {
-    width: 280px;
-    border-radius: 26px;
+    width: 300px;
+    border-radius: 22px;
     border: 1px solid var(--line);
     display: block;
     max-width: 100%;
+    height: auto;
   }
-  .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-  .store {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 11px 20px;
-    font-size: 14.5px;
-    color: var(--soft);
+  .acao {
+    display: inline-block;
+    margin-top: 28px;
+    background: var(--paper); color: var(--navy);
+    font-weight: 800; font-size: 18px;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 14px 26px;
   }
+  .acao:hover { background: var(--soft); color: var(--navy-dark); }
+  /* Dois botões lado a lado no topo (e um embaixo do outro no celular). */
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .acoes .acao { margin: 0; }
+  /* Duas linhas curtas abaixo dos botões: situação nas lojas e preço. */
+  .aviso-lojas { font-size: 16px; color: var(--claro); margin: 18px 0 6px; }
+  .resumo { font-size: 16px; color: var(--claro); margin: 0; }
+  .acoes + .resumo { margin-top: 18px; }
 
-  /* ----------------------------------------------------------- lista */
-  .feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 18px; }
-  .feat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
-  .feat b { display: block; font-size: 17.5px; margin-bottom: 5px; }
-  .feat span { color: var(--soft); font-size: 15.5px; line-height: 1.55; }
-
-  /* ------------------------------------------------------------ dicas */
-  ol.dicas { list-style: none; counter-reset: d; padding: 0; margin: 0; display: grid; gap: 12px; }
-  ol.dicas li {
-    counter-increment: d;
-    display: flex; align-items: center; gap: 16px;
+  /* --------------------------------------- situações e perguntas */
+  .sits { list-style: none; padding: 0; margin: 0 0 32px; display: grid; gap: 12px; }
+  .sits li {
     background: var(--card); border: 1px solid var(--line);
     border-radius: 12px; padding: 16px 20px;
-    font-size: 17.5px;
   }
-  ol.dicas li::before {
-    content: counter(d);
-    flex: none; width: 34px; height: 34px; border-radius: 50%;
+  .sits span { color: var(--claro); font-size: 16px; line-height: 1.5; display: block; }
+  #perguntas .sits { margin-bottom: 0; }
+
+  /* Um cartão do guia, copiado de src/data/guia.ts, no visual claro do app. */
+  .cartao {
+    background: var(--paper); color: var(--ink);
+    border-radius: 16px; padding: 22px 24px; max-width: 640px;
+  }
+  .cartao .rotulo {
+    font-size: 15px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--navy); margin: 0 0 6px;
+  }
+  .cartao h3 { font-size: 21px; color: var(--ink); margin-bottom: 14px; }
+  .cartao ol { margin: 0 0 14px; padding-left: 22px; }
+  .cartao li { margin-bottom: 6px; }
+  .cartao p { color: var(--ink-soft); font-size: 16px; margin-bottom: 10px; }
+  .cartao b { color: var(--ink); }
+
+  /* ---------------------------------------------------------- funções */
+  .feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; }
+  .feat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .feat span { color: var(--claro); font-size: 16px; line-height: 1.5; }
+
+  /* ------------------------------------------------------ demonstração */
+  /* Capturas reais do app, cada uma com o número do passo. Todas mostram só
+     a parte de cima da tela (proporção 5:7, cortada por CSS, sem esticar):
+     a página fica mais curta e some o espaço vazio de "Registrar dor". */
+  .demo {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 28px 20px; margin: 32px 0 0; padding: 0; list-style: none;
+    counter-reset: passo;
+  }
+  .demo li { counter-increment: passo; }
+  .demo figure { margin: 0 auto; max-width: 300px; }
+  .demo img {
+    width: 100%; height: auto; display: block;
+    aspect-ratio: 5 / 7; object-fit: cover; object-position: top;
+    border-radius: 16px; border: 1px solid var(--line);
+  }
+  .demo figcaption {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 16px; line-height: 1.5; margin-top: 14px;
+  }
+  .demo figcaption::before {
+    content: counter(passo);
+    flex: none; width: 28px; height: 28px; border-radius: 50%;
     background: var(--paper); color: var(--navy);
-    font-weight: 800; font-size: 16px;
+    font-weight: 800; font-size: 15px;
     display: grid; place-items: center;
   }
+  .demo figcaption span { color: var(--claro); }
+  /* Aviso "arraste para o lado": só aparece no celular (ver o fim do CSS). */
+  .arraste { display: none; color: var(--claro); font-size: 16px; margin: 0; }
 
-  .claim {
-    font-size: clamp(21px, 4.4vw, 27px);
-    line-height: 1.4;
-    max-width: 24ch;
-    text-wrap: balance;
+  /* ------------------------------------------------- preço e condições */
+  /* Preço: um bloco claro, sem selo de "oferta" nem contador. */
+  .preco {
+    background: var(--paper); color: var(--ink);
+    border-radius: 16px; padding: 22px 24px; max-width: 640px;
   }
-  .claim em { font-style: normal; color: var(--soft); }
+  .preco .valor { font-size: 34px; font-weight: 800; color: var(--navy); margin: 0 0 4px; }
+  .preco p { color: var(--ink-soft); font-size: 16px; margin-bottom: 8px; }
+  .conds, .passos { margin: 24px 0 0; padding-left: 22px; max-width: 60ch; }
+  .conds li, .passos li { margin-bottom: 8px; }
+  .passos { margin-top: 0; }
+
+  /* ------------------------------------------------------ quero testar */
+  .sub { font-size: 22px; margin: 32px 0 12px; }
+  #quero-testar .acao { margin-top: 4px; }
+  /* Botão de contorno: o segundo do topo e o do WhatsApp (hoje comentado no
+     HTML), para o botão cheio continuar sendo a ação principal. */
+  .acao-2 {
+    margin-left: 12px;
+    background: transparent; color: var(--paper);
+    border: 2px solid var(--paper); padding: 12px 24px;
+  }
+  .nota { color: var(--claro); font-size: 15px; margin-top: 20px; }
 
   footer {
     border-top: 1px solid var(--line);
-    padding-block: 32px calc(40px + env(safe-area-inset-bottom, 0px));
-    color: var(--soft);
+    padding-block: 28px calc(40px + env(safe-area-inset-bottom, 0px));
+    color: var(--claro);
     font-size: 15px;
-    display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center;
+    display: flex; flex-wrap: wrap; gap: 4px 26px; align-items: center;
   }
-  footer a { color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
-  footer a:hover { color: var(--soft); }
+  /* Área de toque de pelo menos 44 px de altura nos links do rodapé. */
+  footer a { text-decoration: underline; display: inline-flex; align-items: center; min-height: 44px; }
+  .marcas { flex-basis: 100%; font-size: 13px; }
 
   @media (max-width: 760px) {
-    header { grid-template-columns: 1fr; gap: 36px; padding-block: 48px 40px; }
-    .shot { width: 250px; margin-inline: auto; }
+    body { padding-inline: 16px; }
+    section { padding-block: 40px; }
+    header { grid-template-columns: 1fr; gap: 32px; padding-block: 28px 40px; }
+    /* No celular as capturas ficam menores (240 px), para a página não ficar
+       comprida demais. A do topo mostra só a parte de cima da tela. */
+    .shot {
+      width: 240px; margin-inline: auto;
+      aspect-ratio: 2 / 3; object-fit: cover; object-position: top;
+    }
+    /* "Como funciona" vira uma fileira que se arrasta para o lado (igual às
+       capturas na página de um app na loja). Só CSS, sem script. A fileira
+       vai até as bordas da tela e um pedaço da próxima captura fica à
+       mostra, para dar a entender que há mais. */
+    .arraste { display: block; }
+    .demo {
+      display: flex; gap: 14px;
+      overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
+      margin: 20px -16px 0; padding: 0 16px 6px;
+    }
+    .demo li { flex: 0 0 240px; scroll-snap-align: start; }
+    .demo figure { max-width: none; }
+    .acao { display: block; text-align: center; }
+    .acao-2 { margin-left: 0; }
+    .acoes { flex-direction: column; }
+    .cartao, .preco { padding: 20px 18px; }
+    .feats { gap: 12px; }
+    .feat { padding: 16px 18px; }
+    .sits li { padding: 14px 16px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+  <div class="topo">
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="23,31 44,77 56,77 77,31 62,31 52,61 48,61 38,31" fill="currentColor"/>
+    </svg>
+    <span>VITRUK</span>
+  </div>
+
   <header>
     <div>
-      <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="VITRUK">
-        <polygon points="23,31 44,77 56,77 77,31 62,31 52,61 48,61 38,31" fill="currentColor"/>
-      </svg>
-      <h1>VITRUK</h1>
-      <p class="tagline">Lembrete de pausa e alongamento para quem dirige o dia inteiro.</p>
+      <h1>Dirige o dia todo e a pausa fica para depois?</h1>
       <p class="hero-body">
-        Você passa o dia no volante. O VITRUK avisa a hora de parar, mostra
-        alongamentos para fazer com o veículo parado, e deixa você anotar como
-        o corpo está. Sem cadastro, sem internet, nada sai do seu celular.
+        Para quem dirige carro por aplicativo. O VITRUK avisa a hora de parar,
+        mostra 5 alongamentos para fazer com o carro parado e traz um guia de
+        bolso com passos curtos para a parada. Sem cadastro e sem internet.
       </p>
-      <div class="stores">
-        <span class="store">Em breve na App Store</span>
-        <span class="store">Em breve no Google Play</span>
+      <div class="acoes">
+        <a class="acao" href="#quero-testar">Quero testar (por convite)</a>
+        <a class="acao acao-2" href="#como-funciona">Veja como funciona</a>
       </div>
+      <p class="aviso-lojas">O app ainda aguarda lançamento. Por enquanto, só teste por convite.</p>
+      <p class="resumo">O app é grátis. O guia completo é opcional: R$ 19,90, uma vez só, sem assinatura.</p>
     </div>
-    <img class="shot" src="tela-inicio.png" width="560" height="1089"
-         alt="Tela inicial do VITRUK, mostrando o tempo até a próxima pausa">
+    <!-- Captura real do app (guia de bolso, situação Na parada), sem a barra
+         de status. Não se repete em "Como funciona". -->
+    <img class="shot" src="demo-2-na-parada.jpg" width="600" height="1216"
+         alt="Captura do VITRUK, guia de bolso aberto na situação Na parada: o cartão Escolha o lugar antes de entrar, com quatro passos numerados, o porquê e um exemplo">
   </header>
 
-  <section>
-    <h2>Por que existe</h2>
-    <p class="claim">
-      Quem dirige o dia inteiro sabe como o corpo fica no fim da jornada.
-      <em>O VITRUK não promete resolver isso. Ele só não deixa você esquecer
-      de parar.</em>
+  <!-- O problema, em poucas linhas, e o limite do que o app é. Sem promessa
+       de resultado no corpo nem no bolso. -->
+  <section id="problema" aria-labelledby="t-problema">
+    <h2 id="t-problema">A pausa que fica para depois</h2>
+    <p>
+      Entre uma corrida e outra, parar parece perder tempo, e a pausa vai
+      ficando para depois. O VITRUK avisa no intervalo que você escolheu.
     </p>
+    <p>
+      Os alongamentos e o guia foram escritos para quem dirige carro. Para moto
+      e caminhão, só o lembrete e o registro de dor servem igual.
+    </p>
+    <p>O VITRUK é um lembrete de pausa e alongamento. Não é aparelho médico e não promete resultado.</p>
   </section>
 
-  <section>
-    <h2>O que ele faz</h2>
+  <!-- O que é grátis. Lista igual à de docs/compra-gratis-e-pago.md. -->
+  <section id="gratis" aria-labelledby="t-gratis">
+    <h2 id="t-gratis">Grátis, para sempre</h2>
+    <p class="lead">Tudo isto vem no app sem pagar nada, sem cadastro e sem anúncio.</p>
     <div class="feats">
-      <div class="feat"><b>Lembrete de pausa</b><span>Avisa na hora, mesmo com o app fechado.</span></div>
-      <div class="feat"><b>Cinco alongamentos</b><span>Pescoço, ombros, lombar, punhos e mãos, pernas. Todos para fazer com o veículo parado.</span></div>
-      <div class="feat"><b>Registrar dor</b><span>De 0 a 10, com o histórico dos últimos 14 dias.</span></div>
-      <div class="feat"><b>Uma dica por dia</b><span>De quem vive dentro do carro.</span></div>
-      <div class="feat"><b>Você escolhe o intervalo</b><span>1 hora, 1 hora e 30 ou 2 horas.</span></div>
-      <div class="feat"><b>Funciona sem internet</b><span>Sem cadastro, nada sai do aparelho.</span></div>
+      <div class="feat"><h3>Lembrete de pausa</h3><span>Você toca em Iniciar jornada e escolhe o intervalo: 1 hora, 1 hora e meia ou 2 horas. O aviso chega mesmo com o app fechado. Ele pode atrasar ou não tocar se as notificações estiverem desligadas ou a economia de bateria estiver ligada.</span></div>
+      <div class="feat"><h3>Cinco alongamentos</h3><span>Pescoço, ombros, lombar, punhos e mãos, pernas. Para fazer com o carro parado e o motor desligado.</span></div>
+      <div class="feat"><h3>Registro de dor</h3><span>De 0 a 10, com gráfico dos últimos 14 dias. O VITRUK não envia esse registro a ninguém.</span></div>
+      <div class="feat"><h3>Dica do dia</h3><span>Uma dica curta por dia, na tela inicial e na de alongamentos.</span></div>
+      <div class="feat"><h3>Guia de bolso: Na parada</h3><span>A situação Na parada, completa, com 5 cartões: onde parar, banheiro, descer do carro, cinco minutos para você e quanto dura a parada.</span></div>
+      <div class="feat"><h3>Sem internet, sem cadastro</h3><span>Não pede conta nem login. Só comprar e restaurar a compra precisam de internet.</span></div>
     </div>
+    <p class="nota">Nada do que você registrou fica bloqueado, com ou sem a compra.</p>
+    <a class="acao" href="#quero-testar">Quero testar (por convite)</a>
   </section>
 
-  <section>
-    <h2>Dicas de quem vive na estrada</h2>
-    <p>Uma por dia, direto ao ponto.</p>
-    <ol class="dicas">
-      <li>Marque o banheiro antes</li>
-      <li>A garrafa na mão</li>
-      <li>O espelho denuncia você</li>
-      <li>Parado escorrega mais</li>
-      <li>Não compre nada na rua</li>
+  <!-- Demonstração: capturas reais do build com a compra. A tela "Na parada"
+       está no topo da página e por isso não aparece aqui de novo. -->
+  <section id="como-funciona" aria-labelledby="t-como">
+    <h2 id="t-como">Como funciona</h2>
+    <p class="lead">Telas do app. Consulte com o carro estacionado em local seguro.</p>
+    <p class="arraste">Arraste para o lado para ver as 4 telas.</p>
+    <ol class="demo">
+      <li><figure>
+        <img src="demo-0-inicio.jpg" width="600" height="1216" loading="lazy"
+             alt="Tela Início com a jornada em andamento: próxima pausa por volta das 15:56, faltam 90 minutos, e os botões Encerrar jornada, Guia de bolso, Ver alongamentos e Registrar dor agora">
+        <figcaption><div>Inicie a jornada. <span>A tela mostra a hora da próxima pausa, e o aviso toca no intervalo que você escolheu.</span></div></figcaption>
+      </figure></li>
+      <li><figure>
+        <img src="demo-3-alongamentos.jpg" width="600" height="1216" loading="lazy"
+             alt="Tela Alongamentos: aviso para fazer com o carro parado e o motor desligado, a dica do dia e o alongamento de pescoço, com a instrução">
+        <figcaption><div>Faça os alongamentos. <span>Com o carro parado e o motor desligado, um depois do outro.</span></div></figcaption>
+      </figure></li>
+      <li><figure>
+        <img src="demo-4-registrar-dor.jpg" width="600" height="1216" loading="lazy"
+             alt="Tela Registrar dor: botões de 0 a 10 para o nível da dor, campo de observação opcional e botão Salvar">
+        <figcaption><div>Se quiser, registre a dor. <span>De 0 a 10. O VITRUK não envia esse registro a ninguém.</span></div></figcaption>
+      </figure></li>
+      <li><figure>
+        <img src="demo-1-guia.jpg" width="600" height="1216" loading="lazy"
+             alt="Guia de bolso: lista de situações, cada uma com uma linha explicando quando usar. Na parada está aberta; Antes de sair e Entre atendimentos aparecem com cadeado, como parte do guia completo">
+        <figcaption><div>Abra o guia de bolso. <span>Na parada é grátis. As outras quatro situações fazem parte do guia completo.</span></div></figcaption>
+      </figure></li>
     </ol>
   </section>
 
-  <section>
-    <h2>Privacidade</h2>
-    <p>
-      Seus dados ficam no seu celular. O VITRUK não tem cadastro, não precisa
-      de internet e não envia nada para lugar nenhum.
+  <!-- O que é pago. Contagem de cartões conferida em src/data/guia.ts
+       (4 + 5 + 2 + 4 = 15). Se o guia mudar, refaça estes números. -->
+  <section id="guia-completo" aria-labelledby="t-situacoes">
+    <h2 id="t-situacoes">Guia de bolso completo: compra única</h2>
+    <p class="lead">
+      Uma compra única e opcional, feita dentro do app, libera as outras quatro
+      situações do guia de bolso, com 15 cartões. Consulte estacionado em local
+      seguro.
     </p>
-    <p><a href="privacidade/" style="color:var(--paper)">Política de privacidade</a></p>
+    <ul class="sits">
+      <li><h3>Antes de sair · 4 cartões</h3><span>Em casa, antes de pegar o carro: o que levar e se você dormiu.</span></li>
+      <li><h3>Entre atendimentos · 5 cartões</h3><span>Depois do desembarque ou durante uma espera, com o carro estacionado em local seguro.</span></li>
+      <li><h3>Calor e chuva · 2 cartões</h3><span>Em dia quente ou de chuva: o que vestir e o que deixar no carro.</span></li>
+      <li><h3>Quando o corpo avisa · 4 cartões</h3><span>Quando alguma parte do corpo reclama ou o sono pesa.</span></li>
+    </ul>
+
+    <!-- Cartão copiado sem mudança de src/data/guia.ts (id: sono-no-dia). -->
+    <article class="cartao" aria-labelledby="t-cartao">
+      <p class="rotulo">Exemplo do guia completo · Quando o corpo avisa</p>
+      <h3 id="t-cartao">Sono no meio do dia: pare</h3>
+      <ol>
+        <li>Pare em lugar seguro assim que o sono pesar.</li>
+        <li>Descanse com o carro estacionado o quanto precisar antes de voltar a rodar.</li>
+        <li>Adie ou cancele o resto do dia se o sono continuar.</li>
+      </ol>
+      <p><b>Por quê:</b> Com sono, dirigir fica perigoso, e o dia rende menos.</p>
+      <p><b>Exemplo:</b> Os olhos pesam e o sono não passa. Você para em lugar seguro, estaciona, descansa e só volta a rodar depois.</p>
+    </article>
+  </section>
+
+  <!-- Preço e condições. R$ 19,90 é o preço configurado para o Brasil; se
+       mudar na loja, mude aqui e na linha do topo. -->
+  <section id="preco" aria-labelledby="t-preco">
+    <h2 id="t-preco">Preço e condições</h2>
+    <div class="preco">
+      <p><strong>Guia de bolso completo · preço no Brasil</strong></p>
+      <p class="valor">R$ 19,90</p>
+      <p>Paga uma vez: sem assinatura, renovação nem cobrança mensal. Em outros países, a loja mostra o preço local. O preço final sempre aparece na loja antes de você confirmar.</p>
+    </div>
+    <ul class="conds">
+      <li><strong>A compra é opcional</strong> e feita só dentro do app, pela loja de aplicativos do celular, com as formas de pagamento que essa loja oferece. Este site não cobra nada e não pede dados de pagamento.</li>
+      <li>Comprar e restaurar precisam de internet. Depois de liberado, o guia funciona sem internet.</li>
+      <li><strong>Reembolso</strong> é pedido à loja onde você comprou. Os links estão na <a href="suporte/#reembolso">página de suporte</a>.</li>
+    </ul>
+  </section>
+
+  <!-- Como acessar. O app AINDA NÃO está nas lojas: nada de botão que
+       prometa instalar. A chamada para o teste não tem formulário, script nem
+       serviço de terceiro: o botão só abre o e-mail da própria pessoa com a
+       mensagem pronta, e ela decide se envia. Não pede CPF, telefone,
+       endereço nem dado de saúde. -->
+  <section id="quero-testar" aria-labelledby="t-acessar">
+    <h2 id="t-acessar">Aguardando lançamento</h2>
+    <p>
+      O VITRUK <strong>ainda não foi lançado</strong> e não existe link para
+      instalar. O lançamento começa pelo iPhone, na App Store, ainda sem data
+      marcada. A versão para Android ainda não tem previsão de loja. Por
+      enquanto, só teste por convite.
+    </p>
+
+    <h3 class="sub" id="t-testar">Quero testar (por convite)</h3>
+    <p>
+      Procuramos motoristas de aplicativo, com celular Android ou iPhone.
+      Use em pelo menos 3 dias de trabalho. Nas duas semanas seguintes mandamos
+      poucas perguntas por e-mail. O app não nos envia nada: só sabemos o que
+      você responder. <strong>Participar do teste é grátis.</strong> O app tem
+      uma compra opcional, que você não precisa fazer.
+    </p>
+    <p>
+      O botão abre o seu e-mail com a mensagem pronta. Você precisa tocar em
+      enviar. Respondemos por e-mail, o que pode levar alguns dias, com o
+      convite: no iPhone, pelo aplicativo TestFlight, da Apple; no Android, um
+      link para instalar o app de teste.
+    </p>
+    <a class="acao" href="mailto:vitrukapp@gmail.com?subject=Quero%20testar%20o%20VITRUK&amp;body=Ol%C3%A1%21%20Quero%20participar%20do%20teste%20do%20VITRUK.%0D%0A%0D%0APrimeiro%20nome%3A%0D%0ACidade%3A%0D%0ADirijo%20por%20aplicativo%3F%20%28sim%20ou%20n%C3%A3o%29%3A%0D%0AMeu%20celular%20%C3%A9%20%28Android%20ou%20iPhone%29%3A%0D%0A">Quero testar por e-mail</a>
+    <!--
+      BOTÃO DO WHATSAPP — PREPARADO E DESATIVADO DE PROPÓSITO.
+      Só ative quando o dono fornecer e aprovar o número. Não invente número.
+      Para ativar: troque NUMERO_DO_DONO pelo número só com dígitos, com
+      código do país e DDD (ex.: 55 + DDD + número, sem espaço nem traço),
+      e tire este bloco de dentro do comentário. Avise também a política de
+      privacidade, que já cita o WhatsApp "quando ativado".
+
+    <a class="acao acao-2" href="https://wa.me/NUMERO_DO_DONO?text=Ol%C3%A1%21%20Quero%20participar%20do%20teste%20do%20VITRUK.%20Primeiro%20nome%3A%20%20Cidade%3A%20%20Dirijo%20por%20aplicativo%3F%20%20Meu%20celular%20%C3%A9%20Android%20ou%20iPhone%3F">Quero testar pelo WhatsApp</a>
+    -->
+    <p class="nota">
+      Pedimos só primeiro nome, cidade, se você dirige por aplicativo e qual é
+      o seu celular. Se o botão não abrir nada, escreva direto para
+      vitrukapp@gmail.com.
+      <a href="privacidade/#contato-pelo-site">Como usamos esse contato</a>.
+    </p>
+  </section>
+
+  <!-- Perguntas frequentes. Texto simples e sempre visível: sem script e sem
+       nada para abrir ou fechar. A primeira resposta faz o papel da antiga
+       seção "Privacidade". -->
+  <section id="perguntas" aria-labelledby="t-faq">
+    <h2 id="t-faq">Perguntas frequentes</h2>
+    <ul class="sits">
+      <li><h3>Vocês veem meus registros?</h3><span>Não. Os registros ficam armazenados no seu celular. O VITRUK não os envia para nossos servidores e nós não temos acesso a eles. O app não tem cadastro. Se o backup do próprio celular estiver ligado, quem cuida dele é o sistema do aparelho, não o app. A compra, se você fizer, é processada pela Apple ou pelo Google: o VITRUK não recebe seus dados de pagamento. Detalhes na <a href="privacidade/">política de privacidade</a>.</span></li>
+      <li><h3>O aviso pode atrasar?</h3><span>Pode. O aviso é agendado pelo sistema do celular. Ele pode atrasar ou não tocar se as notificações estiverem desligadas ou a economia de bateria estiver ligada. A <a href="suporte/#aviso">página de suporte</a> mostra o que conferir.</span></li>
+      <li><h3>Serve para moto ou caminhão?</h3><span>Em parte. O lembrete de pausa e o registro de dor funcionam para qualquer pessoa que dirige. Já os alongamentos e o guia foram escritos para quem dirige carro por aplicativo: falam de cliente, de corrida e do banco do carro. Para moto e caminhão, parte desse conteúdo não se aplica.</span></li>
+      <li><h3>E se eu trocar de celular?</h3><span>A compra volta: entre com a mesma conta da loja de aplicativos e toque em Configurações &gt; Restaurar compra. Já os registros de dor, os pontos e os ajustes ficam só no celular. O VITRUK não tem conta nem nuvem, então eles não passam para o celular novo.</span></li>
+    </ul>
+  </section>
+
+  <section id="suporte" aria-labelledby="t-suporte">
+    <h2 id="t-suporte">Suporte</h2>
+    <p>
+      Convite do teste que não instala, compra que não liberou, reembolso e
+      aviso que não chega: veja a <a href="suporte/">página de suporte</a> ou
+      escreva para
+      <a href="mailto:vitrukapp@gmail.com?subject=Suporte%20VITRUK">vitrukapp@gmail.com</a>.
+      Achou um problema ou tem uma sugestão?
+      <a href="suporte/#relatar">Relate por aqui</a>.
+    </p>
   </section>
 
   <footer>
-    <span>Feito por quem dirige, para quem dirige.</span>
+    <span>Feito para quem dirige. Lembrete de pausa e alongamento. Não é aparelho médico.</span>
     <a href="privacidade/">Política de privacidade</a>
-    <span>vitrukapp@gmail.com</span>
+    <a href="suporte/">Suporte</a>
+    <span>Contato: vitrukapp@gmail.com</span>
+    <span class="marcas">App Store e TestFlight são marcas da Apple Inc.</span>
   </footer>
 
 </div>
