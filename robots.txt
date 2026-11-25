@@ -1,0 +1,11 @@
+# robots.txt do site vitruk.app
+# Todo robô de busca pode ler o site inteiro (Googlebot, Bingbot,
+# OAI-SearchBot, GPTBot e os demais). A única pasta fora é /venda/, que é a
+# página de depois do lançamento e não é publicada.
+# Permitir a leitura não garante aparecer em busca nem em resposta de IA.
+
+User-agent: *
+Allow: /
+Disallow: /venda/
+
+Sitemap: https://vitruk.app/sitemap.xml

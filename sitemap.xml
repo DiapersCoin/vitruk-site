@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Só páginas que existem publicamente. /venda/ fica de fora de propósito.
+     Ao criar ou apagar uma página, mude aqui também. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://vitruk.app/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://vitruk.app/guia/antes-de-sair-para-rodar/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://vitruk.app/guia/lembrete-de-pausa-motorista-de-aplicativo/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://vitruk.app/guia/o-que-fazer-entre-corridas/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://vitruk.app/suporte/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://vitruk.app/privacidade/</loc><lastmod>2026-11-24</lastmod></url>
+</urlset>
