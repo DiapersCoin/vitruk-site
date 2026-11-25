@@ -189,11 +189,9 @@
   .conds li, .passos li { margin-bottom: 8px; }
   .passos { margin-top: 0; }
 
-  /* ------------------------------------------------------ quero testar */
-  .sub { font-size: 22px; margin: 32px 0 12px; }
-  #quero-testar .acao { margin-top: 4px; }
-  /* Botão de contorno: o segundo do topo e o do WhatsApp (hoje comentado no
-     HTML), para o botão cheio continuar sendo a ação principal. */
+  /* ------------------------------------------------------ como baixar */
+  /* Botão de contorno (Google Play), para o botão cheio continuar sendo a
+     ação principal. */
   .acao-2 {
     margin-left: 12px;
     background: transparent; color: var(--paper);
@@ -263,15 +261,14 @@
         bolso com passos curtos para a parada. Sem cadastro e sem internet.
       </p>
       <div class="acoes">
-        <a class="acao" href="#quero-testar">Quero testar (por convite)</a>
-        <a class="acao acao-2" href="#como-funciona">Veja como funciona</a>
+        <a class="acao" href="https://apps.apple.com/app/id6838457676">Baixar na App Store</a><!-- BOTÃO DA LOJA: App Store -->
       </div>
-      <p class="aviso-lojas">O app ainda aguarda lançamento. Por enquanto, só teste por convite.</p>
-      <p class="resumo">O app é grátis. O guia completo é opcional: R$ 19,90, uma vez só, sem assinatura.</p>
+      <p class="aviso-lojas">Para iPhone, na App Store. A versão para Android ainda não tem previsão de loja.</p>
+      <p class="resumo">O app é grátis. O guia completo é opcional: R$ 19,90, uma vez só, sem assinatura. <a href="#como-funciona">Veja como funciona</a>.</p>
     </div>
     <!-- Captura real do app (guia de bolso, situação Na parada), sem a barra
          de status. Não se repete em "Como funciona". -->
-    <img class="shot" src="demo-2-na-parada.jpg" width="600" height="1216"
+    <img class="shot" src="ios-2-na-parada.jpg" width="600" height="1216"
          alt="Captura do VITRUK, guia de bolso aberto na situação Na parada: o cartão Escolha o lugar antes de entrar, com quatro passos numerados, o porquê e um exemplo">
   </header>
 
@@ -295,7 +292,7 @@
     <h2 id="t-gratis">Grátis, para sempre</h2>
     <p class="lead">Tudo isto vem no app sem pagar nada, sem cadastro e sem anúncio.</p>
     <div class="feats">
-      <div class="feat"><h3>Lembrete de pausa</h3><span>Você escolhe o intervalo em Configurações (1 hora, 1 hora e 30 ou 2 horas) e toca em Iniciar jornada. O aviso chega mesmo com o app fechado. Ele não aparece se as notificações do app estiverem desligadas. No iPhone, chega silenciado com um modo Foco ligado e mais tarde se o app estiver no Resumo Agendado. No Android, a economia de bateria pode atrasar.</span></div>
+      <div class="feat"><h3>Lembrete de pausa</h3><span>Você escolhe o intervalo em Configurações (1 hora, 1 hora e 30 ou 2 horas) e toca em Iniciar jornada. O aviso chega mesmo com o app fechado. Ele não aparece se as notificações do app estiverem desligadas, chega silenciado se um modo Foco (como o Não Perturbe ou o Dirigir) estiver ligado, e chega mais tarde se o app estiver no Resumo Agendado.</span></div>
       <div class="feat"><h3>Cinco alongamentos</h3><span>Pescoço, ombros, lombar, punhos e mãos, pernas. Para fazer com o carro parado e o motor desligado.</span></div>
       <div class="feat"><h3>Registro de dor</h3><span>De 0 a 10, com gráfico dos últimos 14 dias. O VITRUK não envia esse registro a ninguém.</span></div>
       <div class="feat"><h3>Dica do dia</h3><span>Uma dica curta por dia, na tela inicial e na de alongamentos.</span></div>
@@ -303,7 +300,9 @@
       <div class="feat"><h3>Sem internet, sem cadastro</h3><span>Não pede conta nem login. O que já está no app funciona sem internet. Comprar o guia completo e recuperar uma compra pela loja exigem conexão.</span></div>
     </div>
     <p class="nota">Nada do que você registrou fica bloqueado, com ou sem a compra.</p>
-    <a class="acao" href="#quero-testar">Quero testar (por convite)</a>
+    <div class="acoes">
+      <a class="acao" href="https://apps.apple.com/app/id6838457676">Baixar na App Store</a><!-- BOTÃO DA LOJA: App Store -->
+    </div>
   </section>
 
   <!-- Demonstração: capturas reais do build com a compra. A tela "Na parada"
@@ -314,23 +313,23 @@
     <p class="arraste">Arraste para o lado para ver as 4 telas.</p>
     <ol class="demo">
       <li><figure>
-        <img src="demo-0-inicio.jpg" width="600" height="1216" loading="lazy"
-             alt="Tela Início com a jornada em andamento: próxima pausa por volta das 15:56, faltam 90 minutos, e os botões Encerrar jornada, Guia de bolso, Ver alongamentos e Registrar dor agora">
+        <img src="ios-0-inicio.jpg" width="600" height="1216" loading="lazy"
+             alt="Tela Início com a jornada em andamento: próxima pausa por volta das 17:41, faltam 90 minutos, e os botões Encerrar jornada, Guia de bolso, Ver alongamentos e Registrar dor agora">
         <figcaption><div>Inicie a jornada. <span>A tela mostra a hora da próxima pausa, e o aviso toca no intervalo que você escolheu.</span></div></figcaption>
       </figure></li>
       <li><figure>
-        <img src="demo-3-alongamentos.jpg" width="600" height="1216" loading="lazy"
+        <img src="ios-3-alongamentos.jpg" width="600" height="1216" loading="lazy"
              alt="Tela Alongamentos: aviso para fazer com o carro parado e o motor desligado, a dica do dia e o alongamento de pescoço, com a instrução">
         <figcaption><div>Faça os alongamentos. <span>Com o carro parado e o motor desligado, um depois do outro.</span></div></figcaption>
       </figure></li>
       <li><figure>
-        <img src="demo-4-registrar-dor.jpg" width="600" height="1216" loading="lazy"
+        <img src="ios-4-registrar-dor.jpg" width="600" height="1216" loading="lazy"
              alt="Tela Registrar dor: botões de 0 a 10 para o nível da dor, campo de observação opcional e botão Salvar">
         <figcaption><div>Se quiser, registre a dor. <span>De 0 a 10. O VITRUK não envia esse registro a ninguém.</span></div></figcaption>
       </figure></li>
       <li><figure>
-        <img src="demo-1-guia.jpg" width="600" height="1216" loading="lazy"
-             alt="Guia de bolso: lista de situações, cada uma com uma linha explicando quando usar. Na parada está aberta; Antes de sair e Entre atendimentos aparecem com cadeado, como parte do guia completo">
+        <img src="ios-1-guia.jpg" width="600" height="1216" loading="lazy"
+             alt="Guia de bolso: lista de situações, cada uma com uma linha explicando quando usar. Na parada vem primeiro e está aberta; Antes de sair, Entre atendimentos e Calor e chuva aparecem com cadeado, como parte do guia completo">
         <figcaption><div>Abra o guia de bolso. <span>Na parada é grátis. As outras quatro situações fazem parte do guia completo.</span></div></figcaption>
       </figure></li>
     </ol>
@@ -376,56 +375,29 @@
       <p>Paga uma vez: sem assinatura, renovação nem cobrança mensal. Em outros países, a loja mostra o preço local. O preço final sempre aparece na loja antes de você confirmar.</p>
     </div>
     <ul class="conds">
-      <li><strong>A compra é opcional</strong> e feita só dentro do app, pela loja de aplicativos do celular, com as formas de pagamento que essa loja oferece. Este site não cobra nada e não pede dados de pagamento.</li>
+      <li><strong>A compra é opcional</strong> e feita só dentro do app, pela App Store, com as formas de pagamento que ela oferece. Este site não cobra nada e não pede dados de pagamento.</li>
       <li>Comprar e restaurar precisam de internet. Depois de liberado, o guia funciona sem internet.</li>
       <li><strong>Reembolso</strong> é pedido à loja onde você comprou. Os links estão na <a href="suporte/#reembolso">página de suporte</a>.</li>
     </ul>
   </section>
 
-  <!-- Como acessar. O app AINDA NÃO está nas lojas: nada de botão que
-       prometa instalar. A chamada para o teste não tem formulário, script nem
-       serviço de terceiro: o botão só abre o e-mail da própria pessoa com a
-       mensagem pronta, e ela decide se envia. Não pede CPF, telefone,
-       endereço nem dado de saúde. -->
-  <section id="quero-testar" aria-labelledby="t-acessar">
-    <h2 id="t-acessar">Aguardando lançamento</h2>
-    <p>
-      O VITRUK <strong>ainda não foi lançado</strong> e não existe link para
-      instalar. O lançamento começa pelo iPhone, na App Store, ainda sem data
-      marcada. A versão para Android ainda não tem previsão de loja. Por
-      enquanto, só teste por convite.
-    </p>
-
-    <h3 class="sub" id="t-testar">Quero testar (por convite)</h3>
-    <p>
-      Procuramos motoristas de aplicativo, com celular Android ou iPhone.
-      Use em pelo menos 3 dias de trabalho. Nas duas semanas seguintes mandamos
-      poucas perguntas por e-mail. O app não nos envia nada: só sabemos o que
-      você responder. <strong>Participar do teste é grátis.</strong> O app tem
-      uma compra opcional, que você não precisa fazer.
-    </p>
-    <p>
-      O botão abre o seu e-mail com a mensagem pronta. Você precisa tocar em
-      enviar. Respondemos por e-mail, o que pode levar alguns dias, com o
-      convite: no iPhone, pelo aplicativo TestFlight, da Apple; no Android, um
-      link para instalar o app de teste.
-    </p>
-    <a class="acao" href="mailto:vitrukapp@gmail.com?subject=Quero%20testar%20o%20VITRUK&amp;body=Ol%C3%A1%21%20Quero%20participar%20do%20teste%20do%20VITRUK.%0D%0A%0D%0APrimeiro%20nome%3A%0D%0ACidade%3A%0D%0ADirijo%20por%20aplicativo%3F%20%28sim%20ou%20n%C3%A3o%29%3A%0D%0AMeu%20celular%20%C3%A9%20%28Android%20ou%20iPhone%29%3A%0D%0A">Quero testar por e-mail</a>
-    <!--
-      BOTÃO DO WHATSAPP — PREPARADO E DESATIVADO DE PROPÓSITO.
-      Só ative quando o dono fornecer e aprovar o número. Não invente número.
-      Para ativar: troque NUMERO_DO_DONO pelo número só com dígitos, com
-      código do país e DDD (ex.: 55 + DDD + número, sem espaço nem traço),
-      e tire este bloco de dentro do comentário. Avise também a política de
-      privacidade, que já cita o WhatsApp "quando ativado".
-
-    <a class="acao acao-2" href="https://wa.me/NUMERO_DO_DONO?text=Ol%C3%A1%21%20Quero%20participar%20do%20teste%20do%20VITRUK.%20Primeiro%20nome%3A%20%20Cidade%3A%20%20Dirijo%20por%20aplicativo%3F%20%20Meu%20celular%20%C3%A9%20Android%20ou%20iPhone%3F">Quero testar pelo WhatsApp</a>
-    -->
+  <!-- Como baixar e comprar. Os links das lojas são marcadores, trocados
+       no dia do lançamento (passo a passo no comentário do topo do arquivo). -->
+  <section id="como-baixar" aria-labelledby="t-baixar">
+    <h2 id="t-baixar">Como baixar e comprar</h2>
+    <ol class="passos">
+      <li><strong>Instale o VITRUK</strong> pela App Store, no iPhone: toque em "Baixar na App Store" e depois em "Obter". Instalar é grátis e o app não pede cadastro. A versão para Android ainda não tem previsão de loja.</li>
+      <li><strong>Use o que é grátis.</strong> O lembrete de pausa, os alongamentos, o registro de dor, a dica do dia e a situação Na parada do guia já vêm liberados.</li>
+      <li><strong>Se quiser o guia completo,</strong> abra Configurações no app, vá até Guia de bolso completo, toque em Comprar e confirme na tela da loja. O preço aparece ali antes de você confirmar.</li>
+    </ol>
+    <div class="acoes">
+      <a class="acao" href="https://apps.apple.com/app/id6838457676">Baixar na App Store</a><!-- BOTÃO DA LOJA: App Store -->
+    </div>
     <p class="nota">
-      Pedimos só primeiro nome, cidade, se você dirige por aplicativo e qual é
-      o seu celular. Se o botão não abrir nada, escreva direto para
-      vitrukapp@gmail.com.
-      <a href="privacidade/#contato-pelo-site">Como usamos esse contato</a>.
+      Comprar precisa de internet. Depois de liberado, o guia funciona sem
+      internet. A compra é processada pela Apple, com a conta
+      Apple que você já usa no iPhone. O VITRUK não cria conta e não recebe seus dados de
+      pagamento.
     </p>
   </section>
 
@@ -435,18 +407,18 @@
   <section id="perguntas" aria-labelledby="t-faq">
     <h2 id="t-faq">Perguntas frequentes</h2>
     <ul class="sits">
-      <li><h3>Vocês veem meus registros?</h3><span>Não. Os registros ficam armazenados no seu celular. O VITRUK não os envia para nossos servidores e nós não temos acesso a eles. O app não tem cadastro. Se o backup do próprio celular estiver ligado, quem cuida dele é o sistema do aparelho, não o app. A compra, se você fizer, é processada pela loja de aplicativos do celular: o VITRUK não recebe seus dados de pagamento. Detalhes na <a href="privacidade/">política de privacidade</a>.</span></li>
-      <li><h3>O aviso pode atrasar?</h3><span>Pode. O aviso é agendado pelo sistema do celular. Ele não aparece se as notificações do app estiverem desligadas. No iPhone, chega silenciado com um modo Foco ligado e mais tarde se o app estiver no Resumo Agendado. No Android, a economia de bateria pode atrasar. A <a href="suporte/#aviso">página de suporte</a> mostra o que conferir.</span></li>
+      <li><h3>Vocês veem meus registros?</h3><span>Não. Os registros ficam armazenados no seu celular. O VITRUK não os envia para nossos servidores e nós não temos acesso a eles. O app não tem cadastro. Se o backup do próprio celular estiver ligado, quem cuida dele é o sistema do aparelho, não o app. A compra, se você fizer, é processada pela Apple: o VITRUK não recebe seus dados de pagamento. Detalhes na <a href="privacidade/">política de privacidade</a>.</span></li>
+      <li><h3>O aviso pode atrasar?</h3><span>Pode. O aviso é agendado pelo sistema do celular. Ele não aparece se as notificações do app estiverem desligadas, chega silenciado se um modo Foco (como o Não Perturbe ou o Dirigir) estiver ligado, e chega mais tarde se o app estiver no Resumo Agendado. A <a href="suporte/#aviso">página de suporte</a> mostra o que conferir.</span></li>
       <li><h3>Serve para moto ou caminhão?</h3><span>Em parte. O lembrete de pausa e o registro de dor funcionam para qualquer pessoa que dirige. Já os alongamentos e o guia foram escritos para quem dirige carro por aplicativo: falam de cliente, de corrida e do banco do carro. Para moto e caminhão, parte desse conteúdo não se aplica.</span></li>
-      <li><h3>E se eu trocar de celular?</h3><span>A compra volta: entre no celular novo com a mesma conta da loja de aplicativos. O guia volta sozinho ao abrir o app; se não voltar, toque em Configurações &gt; Restaurar compra. Já os registros de dor, os pontos e os ajustes ficam só no celular. O VITRUK não tem conta nem nuvem, então eles não passam para o celular novo.</span></li>
+      <li><h3>E se eu trocar de celular?</h3><span>A compra volta: entre no iPhone novo com a mesma conta Apple. O guia volta sozinho ao abrir o app; se não voltar, toque em Configurações &gt; Restaurar compra. Já os registros de dor, os pontos e os ajustes ficam só no celular. O VITRUK não tem conta nem nuvem, então eles não passam para o celular novo.</span></li>
     </ul>
   </section>
 
   <section id="suporte" aria-labelledby="t-suporte">
     <h2 id="t-suporte">Suporte</h2>
     <p>
-      Convite do teste que não instala, compra que não liberou, reembolso e
-      aviso que não chega: veja a <a href="suporte/">página de suporte</a> ou
+      Compra que não liberou, restauração, reembolso e aviso que não
+      chega: veja a <a href="suporte/">página de suporte</a> ou
       escreva para
       <a href="mailto:vitrukapp@gmail.com?subject=Suporte%20VITRUK">vitrukapp@gmail.com</a>.
       Achou um problema ou tem uma sugestão?
@@ -458,13 +430,12 @@
     <span>Feito para quem dirige. Lembrete de pausa e alongamento. Não é aparelho médico.</span>
     <a href="privacidade/">Política de privacidade</a>
     <a href="suporte/">Suporte</a>
-    <!-- Páginas de conteúdo em site/guia/. Se a index for trocada pela
-         site/venda no lançamento, traga estas três linhas junto. -->
+    <!-- Páginas de conteúdo em site/guia/ (as mesmas do rodapé da página de antes do lançamento). -->
     <a href="guia/antes-de-sair-para-rodar/">Guia: antes de sair para rodar</a>
     <a href="guia/lembrete-de-pausa-motorista-de-aplicativo/">Guia: lembrete de pausa</a>
     <a href="guia/o-que-fazer-entre-corridas/">Guia: entre corridas</a>
     <span>Contato: vitrukapp@gmail.com</span>
-    <span class="marcas">App Store e TestFlight são marcas da Apple Inc.</span>
+    <span class="marcas">App Store é uma marca de serviço da Apple Inc.</span>
   </footer>
 
 </div>
